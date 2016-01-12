@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:31:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 01:38:13 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/12 16:35:18 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,6 @@ void	draw_fractal(t_env *e)
 
 	double pr, pi;
 	double newRe, newIm, oldRe, oldIm;
-	int maxIterations = 250;
 	int	x;
 	int	y;
 	int	i;
@@ -49,7 +48,7 @@ void	draw_fractal(t_env *e)
 			pi = (y - WIN_HEIGHT / 2) / (0.5 * e->cam->zoom * WIN_HEIGHT) + e->cam->moveY;
 			newRe = newIm = oldRe = oldIm = 0;
 			i = 0;
-			while (i < maxIterations && ((newRe * newRe + newIm * newIm) <= 4))
+			while (i < e->cam->maxIterations && ((newRe * newRe + newIm * newIm) <= 4))
 			{
 				i++;
 				oldRe = newRe;
@@ -57,10 +56,9 @@ void	draw_fractal(t_env *e)
 				newRe = oldRe * oldRe - oldIm * oldIm + pr;
 				newIm = 2 * oldRe * oldIm + pi;
 			}
-			draw_dot(e, x, y, hsv_to_rgb(i % 256, 255, 255 * (i < maxIterations)));
+			draw_dot(e, x, y, hsv_to_rgb((int)(i) % 256, 255, 255 * (i < e->cam->maxIterations)));
 			y++;
 		}
 		x++;
 	}
-	draw_dot(e, 104, 103, 256 * 256 * 255);
 }
