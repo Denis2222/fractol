@@ -1,33 +1,24 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   key.c                                              :+:      :+:    :+:   */
+/*   t_cam.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/11 18:22:36 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 01:38:15 by dmoureu-         ###   ########.fr       */
+/*   Created: 2016/01/12 01:15:42 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/01/12 01:18:34 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-int	keyto(t_env *e, int keycode)
+t_cam *cam(void)
 {
-	if (keycode == KEY_ESC)
-		exit(0);
+	t_cam *camera;
 
-	if (keycode == KEY_UP)
-		e->cam->moveY-=0.1/e->cam->zoom;
-	if (keycode == KEY_DOWN)
-		e->cam->moveY+=0.1/e->cam->zoom;
-	if (keycode == KEY_LEFT)
-		e->cam->moveX-=0.1/e->cam->zoom;
-	if (keycode == KEY_RIGHT)
-		e->cam->moveX+=0.1/e->cam->zoom;
-	if (keycode == KEY_PLUS)
-		e->cam->zoom*=1.1;
-	if (keycode == KEY_MINUS)
-		e->cam->zoom*=0.9;
-	return (0);
+	camera = (t_cam*)malloc(sizeof(t_cam));
+	camera->zoom = 1;
+	camera->moveX = 0;
+	camera->moveY = 0;
+	return (camera);
 }

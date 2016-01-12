@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/11 23:08:10 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/12 01:38:17 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,8 @@
 # include <math.h>
 # include "libft/libft.h"
 
-# define WIN_WIDTH 2400
-# define WIN_HEIGHT 1400
+# define WIN_WIDTH 480
+# define WIN_HEIGHT 320
 
 # define KEY_ESC 53
 # define KEY_UP 126
@@ -35,6 +35,13 @@
 # define KEY_CTRL 269
 # define KEY_SHIFT 258
 
+typedef struct	s_cam
+{
+	double		zoom;
+	double		moveX;
+	double		moveY;
+}				t_cam;
+
 typedef struct	s_env
 {
 	void		*mlx;
@@ -44,6 +51,7 @@ typedef struct	s_env
 	int			bpp;
 	int			size_line;
 	int			endian;
+	t_cam		*cam;
 }				t_env;
 
 void	setup(int n);
@@ -55,6 +63,8 @@ int				keyto(t_env *e, int keycode);
 
 void			draw_dot(t_env *e, int x, int y, int color);
 void			draw_fractal(t_env *e);
+
+t_cam	*cam(void);
 
 //color
 int	rgb_to_int(int r, int g, int b);
