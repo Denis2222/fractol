@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:22:36 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 19:38:48 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 01:25:14 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,9 +30,16 @@ int	keyto(t_env *e, int keycode)
 	if (keycode == KEY_PADDOWN)
 		e->cam->maxIterations--;
 	if (keycode == KEY_PLUS)
+	{
+		e->cam->maxIterations++;
 		e->cam->zoom*=1.1;
+	}
 	if (keycode == KEY_MINUS)
+	{
+		e->cam->maxIterations--;
 		e->cam->zoom*=0.9;
+	}
+	printf("zoom:%f", e->cam->zoom);
 	return (0);
 }
 

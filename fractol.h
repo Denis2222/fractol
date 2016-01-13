@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 19:38:51 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 03:09:39 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 # include "libft/libft.h"
 
 
-# define WIN_WIDTH 800
+# define WIN_WIDTH 840
 # define WIN_HEIGHT 640
 
 # define KEY_ESC 53

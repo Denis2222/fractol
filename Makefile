@@ -26,7 +26,7 @@ $(%.o): $(%.c)
 	$(CC) -o $@ -c $^
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft
+	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft -O3
 
 clean:
 	rm -f $(NAME)

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 19:38:53 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/12 22:11:55 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,13 +34,13 @@ void	setup(int n)
 
 void	draw_img(t_env *e)
 {
-	printf("zoom: %f \nmoveX:%f moveY:%f \nmouse X:%f mouseY:%f \n",
+/*	printf("zoom: %f \nmoveX:%f moveY:%f \nmouse X:%f mouseY:%f \n",
 		e->cam->zoom, 
 		e->cam->moveX, 
 		e->cam->moveY, 
 		e->cam->mouseX, 
 		e->cam->mouseY);
-
+*/
 	e->img = mlx_new_image(e->mlx, WIN_WIDTH, WIN_HEIGHT);
 	e->imgpx = mlx_get_data_addr(
 	e->img, &(e->bpp), &(e->size_line), &(e->endian));
@@ -71,7 +71,6 @@ int			mouse_motion(int x, int y, t_env *e)
 
 int		key_hook(int keycode, t_env *e)
 {
-	ft_putnbr(keycode);
 	keyto(e, keycode);
 	draw_img(e);
 	return (0);
