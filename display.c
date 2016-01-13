@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:31:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 21:12:42 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 23:30:05 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,17 +80,23 @@ void	draw_fractal(t_env *e)
 	int	y;
 	int	i;
 
-	x = 0;
-	while (x < WIN_WIDTH)
+	y = 0;
+	while (y < WIN_HEIGHT)
 	{
-		y = 0;
-		while (y < WIN_HEIGHT)
+		x = 0;
+		while (x < WIN_WIDTH)
 		{
-			i = get_iteration_julia(e, x, y);
-			draw_dot(e, x, y, hsv_to_rgb(i % 256, 255, 255 * (i < e->cam->maxIterations)));
-			y++;
+			if (e->fractale == 1)
+				i = get_iteration_mandelbrot(e, x, y);
+			else
+				i = get_iteration_julia(e, x, y);
+			draw_dot(e, x, y, hsv_to_rgb(i % 256, 255 - (i*255/e->cam->maxIterations), 255));
+			ft_putstr_fd(ft_itoa(i*2), e->fd);
+			ft_putstr_fd(" ", e->fd);
+			x++;
 		}
-		x++;
+		ft_putstr_fd(" \n", e->fd);
+		y++;
 	}
 }
 
@@ -175,4 +181,7 @@ void	draw_pentagon(t_env *e)
 	draw_pentagon_func(e, e->cam->moveX * e->cam->zoom + 50, e->cam->moveY * e->cam->zoom + 40, e->cam->zoom * 6, e->cam->mouseX, e->cam->zoom);
 }
 
-
+void	draw_newton(t_env *e)
+{
+	
+}

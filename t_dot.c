@@ -1,43 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   t_dot.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/11 17:07:32 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 23:26:16 by dmoureu-         ###   ########.fr       */
+/*   Created: 2016/01/08 14:07:11 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/01/13 18:27:18 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	help()
+t_dot	*dot(int x, int y, int z)
 {
-	ft_putendl("\n1 Mandelbrot");
-	ft_putendl("2 Julia");
-	ft_putendl("3 Pentagone");
-	ft_putendl("4 MandelJuliaBrot");
-	exit(EXIT_FAILURE);
+	t_dot	*dot;
+
+	if (!(dot = (t_dot*)malloc(sizeof(t_dot))))
+		return (NULL);
+	dot->x = x;
+	dot->y = y;
+	dot->z = z;
+	return (dot);
 }
 
-void	invalid(int f)
+void	freedot(t_dot *d1, t_dot *d2, t_dot *d3, t_dot *d4)
 {
-	ft_putstr("Fractale indisponible");
-	help();
-}
-
-int		main(int ac, char **av)
-{
-	int	f;
-
-	if (ac != 2)
-		help();
-	//setbuf(stdout, NULL);
-	f = ft_atoi(av[1]);
-	if (f > 0 && f < 4)
-		setup(f);
-	else
-		invalid(f);
-	return (0);
+	if (d1)
+		free(d1);
+	if (d2)
+		free(d2);
+	if (d3)
+		free(d3);
+	if (d4)
+		free(d4);
 }

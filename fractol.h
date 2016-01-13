@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 21:04:41 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 23:29:37 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 
 
-# define WIN_WIDTH 1840
-# define WIN_HEIGHT 1640
+# define WIN_WIDTH 480
+# define WIN_HEIGHT 340
 
 # define KEY_ESC 53
 # define KEY_UP 126
@@ -56,6 +56,8 @@ typedef struct	s_env
 	int			size_line;
 	int			endian;
 	t_cam		*cam;
+	int			fractale;
+	int			fd;
 }				t_env;
 
 typedef struct	s_dot

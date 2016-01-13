@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 20:57:08 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 23:30:11 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,12 @@
 
 int		mouse_motion(int x, int y, t_env *e);
 
-void	setup(int n)
+void	setup(int f)
 {
 	t_env	e;
 
+	e.fractale = f;
+	e.fd = open("./fractol.fdf", O_WRONLY | O_TRUNC);
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIN_WIDTH, WIN_HEIGHT, "Fractol");
 	e.bpp = 0;
@@ -29,6 +31,7 @@ void	setup(int n)
 	mlx_hook(e.win, 6, 1, mouse_motion, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_loop(e.mlx);
+	close(e.fd);
 }
 
 
@@ -44,9 +47,13 @@ void	draw_img(t_env *e)
 	e->img = mlx_new_image(e->mlx, WIN_WIDTH, WIN_HEIGHT);
 	e->imgpx = mlx_get_data_addr(
 	e->img, &(e->bpp), &(e->size_line), &(e->endian));
-	//draw_fractal(e);
-	draw_pentagon(e);
+	
+	if (e->fractale == 1 || e->fractale == 2)
+		draw_fractal(e);
+	if (e->fractale == 3)
+		draw_pentagon(e);
 	//draw_fern(e);
+	
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_destroy_image(e->mlx, e->img);
 }

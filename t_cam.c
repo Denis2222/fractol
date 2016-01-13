@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 01:15:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 16:46:14 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 23:30:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ t_cam *cam(void)
 	camera->zoom = 1;
 	camera->moveX = 0;
 	camera->moveY = 0;
-	camera->maxIterations = 30;
+	camera->maxIterations = 100;
 	camera->mouseX = 0;
 	camera->mouseY = 0;
 	return (camera);
