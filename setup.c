@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/12 22:11:55 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 20:57:08 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,9 @@ void	draw_img(t_env *e)
 	e->img = mlx_new_image(e->mlx, WIN_WIDTH, WIN_HEIGHT);
 	e->imgpx = mlx_get_data_addr(
 	e->img, &(e->bpp), &(e->size_line), &(e->endian));
-	draw_fractal(e);
+	//draw_fractal(e);
+	draw_pentagon(e);
+	//draw_fern(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	mlx_destroy_image(e->mlx, e->img);
 }
@@ -65,7 +67,7 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 int			mouse_motion(int x, int y, t_env *e)
 {
 	mouseto(e, 0, x, y);
-	draw_img(e);
+	//draw_img(e);
 	return (0);
 }
 

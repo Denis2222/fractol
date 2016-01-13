@@ -5,6 +5,7 @@ SRCS = display.c \
 	   key.c \
 	   color.c \
 	   t_cam.c \
+	   t_dot.c \
 	   main.c
 
 NAME = fractol

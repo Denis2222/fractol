@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 03:09:39 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/13 21:04:41 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 
 
-# define WIN_WIDTH 840
-# define WIN_HEIGHT 640
+# define WIN_WIDTH 1840
+# define WIN_HEIGHT 1640
 
 # define KEY_ESC 53
 # define KEY_UP 126
@@ -58,6 +58,13 @@ typedef struct	s_env
 	t_cam		*cam;
 }				t_env;
 
+typedef struct	s_dot
+{
+	int			x;
+	int			y;
+	int			z;
+}				t_dot;
+
 void	setup(int n);
 
 int				mouse_hook(int button, int x, int y, t_env *e);
@@ -68,9 +75,14 @@ int				keyto(t_env *e, int keycode);
 int				mouseto(t_env *e, int button, int x, int y);
 
 void			draw_dot(t_env *e, int x, int y, int color);
+void			draw_line(t_env *e, t_dot *p0, t_dot *p1, int color);
 void			draw_fractal(t_env *e);
+void			draw_fern(t_env *e);
+void			draw_pentagon(t_env *e);
 
-t_cam	*cam(void);
+t_cam			*cam(void);
+t_dot			*dot(int x, int y, int z);
+void			freedot(t_dot *d1, t_dot *d2, t_dot *d3, t_dot *d4);
 
 //color
 int	rgb_to_int(int r, int g, int b);
