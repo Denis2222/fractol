@@ -6,19 +6,28 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:31:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 20:34:44 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 21:09:37 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-t_double2 multcomplex(t_double2 d1, t_double2 d2)
+void	opcomplex(t_double2 *result, t_double2 d1, t_double2 d2)
 {
-	t_double2 result;
+	result->r = d1.r + d2.r;
+	result->i = d1.i + d2.i;
+}
 
-	result.r = d1.r * d2.r + ((-1) *  d1.i * d2.i);
-	result.i = (d1.r * d2.i) + (d1.i * d2.r);
-	return (result);
+void	souscomplex(t_double2 *result, t_double2 d1, t_double2 d2)
+{
+	result->r = d1.r - d2.r;
+	result->i = d1.i - d2.i;
+}
+
+void	multcomplex(t_double2 *result, t_double2 d1, t_double2 d2)
+{
+	result->r = d1.r * d2.r + ((-1) *  d1.i * d2.i);
+	result->i = (d1.r * d2.i) + (d1.i * d2.r);
 }
 
 int		get_iteration_mandelbrot(t_env *e, int x, int y)
@@ -38,8 +47,11 @@ int		get_iteration_mandelbrot(t_env *e, int x, int y)
 		i++;
 		old.r = new.r;
 		old.i = new.i;
-		new.r = old.r * old.r - old.i * old.i + p.r;
-		new.i = 2 * old.r * old.i + p.i;
+		multcomplex(&new, old, old);
+		multcomplex(&new, new, old);
+		souscomplex(&new, new, old);
+		new.r += p.r;
+		new.i += p.i;
 	}
 	return (i);
 }
