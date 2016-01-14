@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 23:29:37 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 19:00:23 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@
 # include "libft/libft.h"
 
 
-# define WIN_WIDTH 480
-# define WIN_HEIGHT 340
+# define WIDTH 640
+# define HEIGHT 480
 
 # define KEY_ESC 53
 # define KEY_UP 126
@@ -35,15 +35,18 @@
 # define KEY_PADDOT 65
 # define KEY_CTRL 269
 # define KEY_SHIFT 258
+# define KEY_F 3
+
+# define M_PI5 M_PI / 5
 
 typedef struct	s_cam
 {
-	double		zoom;
+	double		z;
 	double		moveX;
 	double		moveY;
 	double		mouseX;
 	double		mouseY;
-	int			maxIterations;
+	int			maxIt;
 }				t_cam;
 
 typedef struct	s_env
@@ -64,10 +67,17 @@ typedef struct	s_dot
 {
 	int			x;
 	int			y;
-	int			z;
 }				t_dot;
 
-void	setup(int n);
+typedef struct	s_double2
+{
+	double		r;
+	double		i;
+}				t_double2;
+
+void			double2(t_double2 *dbl);
+
+void			setup(int n);
 
 int				mouse_hook(int button, int x, int y, t_env *e);
 int				expose_hook(t_env *e);
@@ -79,12 +89,14 @@ int				mouseto(t_env *e, int button, int x, int y);
 void			draw_dot(t_env *e, int x, int y, int color);
 void			draw_line(t_env *e, t_dot *p0, t_dot *p1, int color);
 void			draw_fractal(t_env *e);
-void			draw_fern(t_env *e);
-void			draw_pentagon(t_env *e);
+void			draw_pentagon(t_env *e, t_double2 start, t_double2 angle, int deep);
+void			print_fractal_fdf(t_env *e);
+
+int				get_iteration_mandelbrot(t_env *e, int x, int y);
+int				get_iteration_julia(t_env *e, int x, int y);
 
 t_cam			*cam(void);
-t_dot			*dot(int x, int y, int z);
-void			freedot(t_dot *d1, t_dot *d2, t_dot *d3, t_dot *d4);
+void			setdot(t_dot *dot, int x, int y);
 
 //color
 int	rgb_to_int(int r, int g, int b);

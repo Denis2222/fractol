@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 17:07:32 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 23:26:16 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 14:55:20 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ int		main(int ac, char **av)
 		help();
 	//setbuf(stdout, NULL);
 	f = ft_atoi(av[1]);
-	if (f > 0 && f < 4)
+	if (f > 0 && f < 5)
 		setup(f);
 	else
 		invalid(f);

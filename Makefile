@@ -1,11 +1,14 @@
 .PHONY: libft
 
 SRCS = display.c \
+	   draw.c \
 	   setup.c \
 	   key.c \
 	   color.c \
 	   t_cam.c \
 	   t_dot.c \
+	   t_double2.c \
+	   print.c \
 	   main.c
 
 NAME = fractol

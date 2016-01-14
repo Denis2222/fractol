@@ -6,73 +6,92 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:31:37 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/13 23:30:05 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 20:34:44 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
 
-void	draw_dot(t_env *e, int x, int y, int color)
+t_double2 multcomplex(t_double2 d1, t_double2 d2)
 {
-	char	b;
-	char	g;
-	char	r;
-	int		i;
+	t_double2 result;
 
-	//printf("RGB:%d %d %d", r, g, b);
-	b = color % 256;
-	g = (color / 256) % 256;
-	r = (color / 256 / 256) % 256;
-	i = (e->size_line * y) + (x * (e->bpp / 8));
-	e->imgpx[i] = b;
-	e->imgpx[i + 1] = g;
-	e->imgpx[i + 2] = r;
+	result.r = d1.r * d2.r + ((-1) *  d1.i * d2.i);
+	result.i = (d1.r * d2.i) + (d1.i * d2.r);
+	return (result);
 }
 
-int	get_iteration_mandelbrot(t_env *e, int x, int y)
+int		get_iteration_mandelbrot(t_env *e, int x, int y)
 {
-	double newRe, newIm, oldRe, oldIm;
-	double pr, pi;
-	int	i;
+	t_double2	new;
+	t_double2	old;
+	t_double2	p;
+	int			i;
 
-	pr = 1.5 * (x - WIN_WIDTH / 2) / (0.5 * e->cam->zoom * WIN_WIDTH) + e->cam->moveX;
-	pi = (y - WIN_HEIGHT / 2) / (0.5 * e->cam->zoom * WIN_HEIGHT) + e->cam->moveY;
-	newRe = newIm = oldRe = oldIm = 0;
+	p.r = 1.5 * (x - WIDTH / 2) / (0.5 * e->cam->z * WIDTH) + e->cam->moveX;
+	p.i = (y - HEIGHT / 2) / (0.5 * e->cam->z * HEIGHT) + e->cam->moveY;
+	double2(&new);
+	double2(&old);
 	i = 0;
-	while (i < e->cam->maxIterations && ((newRe * newRe + newIm * newIm) <= 4))
+	while (i < e->cam->maxIt && ((new.r * new.r + new.i * new.i) <= 4))
 	{
 		i++;
-		oldRe = newRe;
-		oldIm = newIm;
-		newRe = oldRe * oldRe - oldIm * oldIm + pr;
-		newIm = 2 * oldRe * oldIm + pi;
+		old.r = new.r;
+		old.i = new.i;
+		new.r = old.r * old.r - old.i * old.i + p.r;
+		new.i = 2 * old.r * old.i + p.i;
 	}
 	return (i);
 }
 
-int	get_iteration_julia(t_env *e, int x, int y)
+int		get_iteration_julia(t_env *e, int x, int y)
 {
-	double	newRe, newIm, oldRe, oldIm;
-	double	cRe, cIm;
-	int	i;
+	t_double2	new;
+	t_double2	old;
+	t_double2	c;
+	int			i;
 
-	cRe = -0.7 + e->cam->mouseX / e->cam->zoom;
-	cIm = 0.27015 + e->cam->mouseY / e->cam->zoom;
-
-	newRe = 1.5 * (x - WIN_WIDTH / 2) / (0.5 * e->cam->zoom * WIN_WIDTH) + e->cam->moveX;
-	newIm = (y - WIN_HEIGHT / 2) / (0.5 * e->cam->zoom * WIN_HEIGHT) + e->cam->moveY;
-
+	c.r = -0.7 + e->cam->mouseX / e->cam->z;
+	c.i = 0.27015 + e->cam->mouseY / e->cam->z;
+	new.r = 1.5 * (x - WIDTH / 2) / (0.5 * e->cam->z * WIDTH) + e->cam->moveX;
+	new.i = (y - HEIGHT / 2) / (0.5 * e->cam->z * HEIGHT) + e->cam->moveY;
+	double2(&old);
 	i = 0;
-	while (i < e->cam->maxIterations && (newRe * newRe + newIm * newIm) <= 4)
+	while (i < e->cam->maxIt && (new.r * new.r + new.i * new.i) <= 4)
 	{
-		oldRe = newRe;
-		oldIm = newIm;
-		newRe = oldRe * oldRe - oldIm * oldIm + cRe;
-		newIm = 2 * oldRe * oldIm + cIm;
+		old.r = new.r;
+		old.i = new.i;
+		new.r = old.r * old.r - old.i * old.i + c.r;
+		new.i = 2 * old.r * old.i + c.i;
 		i++;
 	}
 	return (i);
 }
+
+int		get_iteration_custom(t_env *e, int x, int y)
+{
+	t_double2	new;
+	t_double2	old;
+	t_double2	c;
+	int			i;
+
+	c.r = -0.7 + e->cam->mouseX / e->cam->z;
+	c.i = 0.27015 + e->cam->mouseY / e->cam->z;
+	new.r = 1.5 * (x - WIDTH / 2) / (0.5 * e->cam->z * WIDTH) + e->cam->moveX;
+	new.i = (y - HEIGHT / 2) / (0.5 * e->cam->z * HEIGHT) + e->cam->moveY;
+	double2(&old);
+	i = 0;
+	while (i < e->cam->maxIt && (new.r * new.r + new.i * new.i) <= 4)
+	{
+		old.r = new.r;
+		old.i = new.i;
+		new.r = old.r * old.r - old.i * old.i + c.r;
+		new.i = 2 * old.r * old.i + c.i;
+		i++;
+	}
+	return (i);
+}
+
 
 void	draw_fractal(t_env *e)
 {
@@ -81,107 +100,66 @@ void	draw_fractal(t_env *e)
 	int	i;
 
 	y = 0;
-	while (y < WIN_HEIGHT)
+	while (y < HEIGHT)
 	{
 		x = 0;
-		while (x < WIN_WIDTH)
+		while (x < WIDTH)
 		{
 			if (e->fractale == 1)
 				i = get_iteration_mandelbrot(e, x, y);
-			else
+			else if (e->fractale == 2)
 				i = get_iteration_julia(e, x, y);
-			draw_dot(e, x, y, hsv_to_rgb(i % 256, 255 - (i*255/e->cam->maxIterations), 255));
-			ft_putstr_fd(ft_itoa(i*2), e->fd);
-			ft_putstr_fd(" ", e->fd);
+			else if (e->fractale == 4)
+				i = get_iteration_custom(e, x, y) ;
+			draw_dot(e, x, y,
+				hsv_to_rgb(i % 256, 255 ,255 * (i < e->cam->maxIt)));
 			x++;
 		}
-		ft_putstr_fd(" \n", e->fd);
 		y++;
 	}
 }
 
-double mult(double x)
+double	mult(double x)
 {
-	return (x*7);
+	return (x * 7);
 }
 
-void	draw_line(t_env *e, t_dot *p0, t_dot *p1, int color)
+/*
+void	draw_pentagon(t_env *e, double x, double y, double radius, double angle, int deep)
 {
-	t_dot	*d;
-	t_dot	*s;
-	int		err;
-	int		e2;
+	int		i;
+	int		j;
+	double	d[6];
+	t_dot	dot1;
+	t_dot	dot2;
 
-	d = dot(ft_abs(p1->x - p0->x), ft_abs(p1->y - p0->y), 0);
-	s = dot((p0->x < p1->x ? 1 : -1), (p0->y < p1->y ? 1 : -1), 0);
-	err = (d->x > d->y ? d->x : -d->y) / 2;
-	while (!(p0->x == p1->x && p0->y == p1->y))
-	{
-		if (p0->x < WIN_WIDTH && p0->x > 0 && p0->y < WIN_HEIGHT && p0->y > 0)
-			draw_dot(e, p0->x, p0->y, color);
-		e2 = err;
-		if (e2 > -d->x)
-		{
-			err -= d->y;
-			p0->x += s->x;
-		}
-		if (e2 < d->y)
-		{
-			err += d->x;
-			p0->y += s->y;
-		}
-	}
-	freedot(p0, p1, d, s);
-}
-
-void	draw_pentagon_func(t_env *e, double x, double y, double radius, double angle, int deep)
-{
-	double pi5 = 3.141596/5;
-	double h = 2*radius*cos(pi5);
-	int i;
-	int j;
-	double ang2;
-	double x2;
-	double y2;
-	double rad2;
-	double ang3;
-
+	d[0] = 2 * radius * cos(M_PI5);
 	i = 0;
 	while (i < 5)
 	{
-		ang2 = angle + pi5 * i * 2;
-		x2 = x - h * cos(ang2);
-		y2 = y - h * sin(ang2);
-		rad2 = radius / (2 * cos(pi5) + 1);
-		ang3 = angle + 3.141596 + (2* i + 1) * pi5;
+		d[1] = angle + M_PI5 * i * 2;
+		d[2] = x - d[0] * cos(d[1]);
+		d[3] = y - d[0] * sin(d[1]);
+		d[4] = radius / (2 * cos(M_PI5) + 1);
+		d[5] = angle + M_PI + (2 * i + 1) * M_PI5;
 		
 		j = 0;
 		while (j < 4)
 		{
+			setdot(&dot1, mult(x + d[4] * cos(d[5] + j * M_PI5 * 2)), 
+					mult(y + d[4] * sin(d[5] + j * M_PI5 * 2)));
+				
+			
+			
 			draw_line(e, 
 				dot(
-					mult(x+rad2*cos(ang3+j*pi5*2)),
-					mult(y+rad2 * sin(ang3+j*pi5*2)),
-				0), 
 				dot(
-					mult(x+rad2*cos(ang3+(j+1)*pi5*2)),
-					mult(y+rad2*sin(ang3+(j+1)*pi5*2)),
-				0),
 				255);
 			j++;
 		}
 		if (deep>0)
-			draw_pentagon_func(e, x2, y2, radius/(2*cos(pi5)+1), angle+3.141596+(2*i+1)*pi5, deep-1);
+			draw_pentagon(e, d[2], d[3], radius / (2 * cos(M_PI5) + 1), angle + M_PI + (2 * i + 1) * M_PI5, deep - 1);
 		i++;
 	}
 }
-
-void	draw_pentagon(t_env *e)
-{
-	draw_pentagon_func(e, e->cam->moveX * e->cam->zoom + 50, e->cam->moveY * e->cam->zoom + 40, e->cam->zoom * 6, e->cam->mouseX, e->cam->zoom);
-}
-
-void	draw_newton(t_env *e)
-{
-	
-}
+*/
