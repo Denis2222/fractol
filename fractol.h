@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 19:00:23 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 22:48:09 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 # include <mlx.h>
 # include <math.h>
 # include "libft/libft.h"
-
+# include <complex.h>
 
 # define WIDTH 640
 # define HEIGHT 480
@@ -47,6 +47,7 @@ typedef struct	s_cam
 	double		mouseX;
 	double		mouseY;
 	int			maxIt;
+	int			anim;
 }				t_cam;
 
 typedef struct	s_env

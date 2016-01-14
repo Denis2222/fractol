@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 18:28:00 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 22:59:46 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,8 +81,11 @@ int		mouse_hook(int button, int x, int y, t_env *e)
 
 int			mouse_motion(int x, int y, t_env *e)
 {
-	mouseto(e, 0, x, y);
-	draw_img(e);
+	if (e->cam->anim)
+	{
+		mouseto(e, 0, x, y);
+		draw_img(e);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/12 01:15:42 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 14:45:17 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/14 22:52:23 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,6 @@ t_cam *cam(void)
 	camera->maxIt = 6;
 	camera->mouseX = 0;
 	camera->mouseY = 0;
+	camera->anim = 0;
 	return (camera);
 }

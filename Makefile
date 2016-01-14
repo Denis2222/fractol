@@ -13,7 +13,7 @@ SRCS = display.c \
 
 NAME = fractol
 GCC_FLAG = -Wall -Werror -Wextra
-CC = gcc #$(GCC_FLAG)
+CC = gcc -std=c89 #$(GCC_FLAG)
 
 OBJS = $(SRCS:.c=.o)
 
