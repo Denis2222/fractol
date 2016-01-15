@@ -12,7 +12,7 @@
 
 #ifndef FRACTOL_H
 # define FRACTOL_H
-# include <mlx.h>
+# include "minilibx/mlx.h"
 # include <math.h>
 # include "libft/libft.h"
 # include <complex.h>
@@ -25,6 +25,7 @@
 # define KEY_DOWN 125
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+
 # define KEY_PADUP 91
 # define KEY_PADDOWN 84
 # define KEY_PADLEFT 86
@@ -33,8 +34,14 @@
 # define KEY_MINUS 78
 # define KEY_PAD0 82
 # define KEY_PADDOT 65
+
 # define KEY_CTRL 269
 # define KEY_SHIFT 258
+
+# define KEY_W 13
+# define KEY_A 0
+# define KEY_S 1
+# define KEY_D 2
 # define KEY_F 3
 
 # define M_PI5 M_PI / 5

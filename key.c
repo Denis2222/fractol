@@ -25,19 +25,19 @@ int	keyto(t_env *e, int keycode)
 		e->cam->moveX -= 0.1 / e->cam->z;
 	if (keycode == KEY_RIGHT)
 		e->cam->moveX += 0.1 / e->cam->z;
-	if (keycode == KEY_PADUP)
+	if (keycode == KEY_PADUP || keycode == KEY_D)
 		e->cam->maxIt++;
-	if (keycode == KEY_PADDOWN)
+	if (keycode == KEY_PADDOWN || keycode == KEY_A)
 		e->cam->maxIt--;
-	if (keycode == KEY_PLUS)
+	if (keycode == KEY_PLUS || keycode == KEY_W)
 	{
 		e->cam->z *= 1.1;
 	}
-	if (keycode == KEY_MINUS)
+	if (keycode == KEY_MINUS || keycode == KEY_S)
 	{
 		e->cam->z *= 0.9;
 	}
-	if (keycode == 1)
+	if (keycode == KEY_F)
 	{
 		if (e->cam->anim)
 		{
@@ -46,11 +46,11 @@ int	keyto(t_env *e, int keycode)
 		}
 		else
 			e->cam->anim = 1;
-		e->cam->anim = e->cam->anim ? 0 : 1;
 	}
 	if (keycode == KEY_F)
 		print_fractal_fdf(e);
 
+	ft_putnbr(keycode);
 	printf("zoom:%f", e->cam->z);
 	return (0);
 }

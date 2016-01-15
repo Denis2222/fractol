@@ -48,8 +48,6 @@ int		get_iteration_mandelbrot(t_env *e, int x, int y)
 		old.r = new.r;
 		old.i = new.i;
 		multcomplex(&new, old, old);
-		multcomplex(&new, new, old);
-		souscomplex(&new, new, old);
 		new.r += p.r;
 		new.i += p.i;
 	}
@@ -135,43 +133,3 @@ double	mult(double x)
 {
 	return (x * 7);
 }
-
-/*
-void	draw_pentagon(t_env *e, double x, double y, double radius, double angle, int deep)
-{
-	int		i;
-	int		j;
-	double	d[6];
-	t_dot	dot1;
-	t_dot	dot2;
-
-	d[0] = 2 * radius * cos(M_PI5);
-	i = 0;
-	while (i < 5)
-	{
-		d[1] = angle + M_PI5 * i * 2;
-		d[2] = x - d[0] * cos(d[1]);
-		d[3] = y - d[0] * sin(d[1]);
-		d[4] = radius / (2 * cos(M_PI5) + 1);
-		d[5] = angle + M_PI + (2 * i + 1) * M_PI5;
-		
-		j = 0;
-		while (j < 4)
-		{
-			setdot(&dot1, mult(x + d[4] * cos(d[5] + j * M_PI5 * 2)), 
-					mult(y + d[4] * sin(d[5] + j * M_PI5 * 2)));
-				
-			
-			
-			draw_line(e, 
-				dot(
-				dot(
-				255);
-			j++;
-		}
-		if (deep>0)
-			draw_pentagon(e, d[2], d[3], radius / (2 * cos(M_PI5) + 1), angle + M_PI + (2 * i + 1) * M_PI5, deep - 1);
-		i++;
-	}
-}
-*/

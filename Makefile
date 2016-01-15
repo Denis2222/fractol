@@ -1,4 +1,4 @@
-.PHONY: libft
+.PHONY: libft minilibx
 
 SRCS = display.c \
 	   draw.c \
