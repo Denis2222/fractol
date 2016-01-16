@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 12:57:38 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 21:33:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 22:26:56 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,15 @@ void	print_fractal_fdf(t_env *e)
 	int	y;
 	int	i;
 
-	e->fd = open("./fractol.fdf", O_CREAT | O_WRONLY | O_TRUNC);
+	e->fd = open("./fractol.fdf",
+				O_CREAT | O_WRONLY | O_TRUNC, S_IRUSR | S_IWUSR);
 	y = 0;
 	while (y < HEIGHT)
 	{
 		x = 0;
 		while (x < WIDTH)
 		{
-			if (e->fractale == 1)
-				i = get_iteration_mandelbrot(e, x, y);
-			else
-				i = get_iteration_julia(e, x, y);
+			i = switch_fractal(e, x, y);
 			ft_putstr_fd(ft_itoa(i * 2), e->fd);
 			ft_putstr_fd(" ", e->fd);
 			x++;

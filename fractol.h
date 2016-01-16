@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 16:51:13 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 21:19:43 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 21:51:55 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -126,7 +126,7 @@ int				mouse_motion(int x, int y, t_env *e);
 
 void			draw_img(t_env *e);
 void			draw_fractal(t_env *e);
-void			switch_fractal(t_env *e, int x, int y);
+int				switch_fractal(t_env *e, int x, int y);
 void			print_fractal_fdf(t_env *e);
 void			draw_info(t_env *e);
 

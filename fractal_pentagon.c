@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 17:56:28 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 20:40:25 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 22:12:35 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ void	draw_pentagon_func(t_env *e, t_pentagon p, int deep)
 	i = 0;
 	while (i < 5)
 	{
-		ang3 = p.angle + M_PI + (2 * i + 1) * M_PI5;
+		ang3 = p.angle + M_PI + (2 * i + 1) * M_PI5 + e->cam->vary;
 		p2 = pentaform(p, i);
 		j = 0;
 		while (j < 4)

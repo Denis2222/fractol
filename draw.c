@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 14:30:44 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 21:36:10 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 21:53:03 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ void	draw_fractal(t_env *e)
 {
 	int	x;
 	int	y;
+	int	i;
 
 	y = 0;
 	while (y < HEIGHT)
@@ -33,7 +34,12 @@ void	draw_fractal(t_env *e)
 		x = 0;
 		while (x < WIDTH)
 		{
-			switch_fractal(e, x, y);
+			i = switch_fractal(e, x, y);
+			if (i < e->cam->maxit)
+				draw_dot(e, x, y,
+				hsv_to_rgb(i % 256, 255, 255));
+			else
+				draw_dot(e, x, y, 0);
 			x++;
 		}
 		y++;

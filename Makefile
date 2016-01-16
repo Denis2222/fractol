@@ -17,7 +17,7 @@ SRCS = draw.c \
 
 NAME = fractol
 GCC_FLAG = -Wall -Werror -Wextra
-CC = gcc -std=c89 #$(GCC_FLAG)
+CC = gcc $(GCC_FLAG)
 
 OBJS = $(SRCS:.c=.o)
 
@@ -31,10 +31,10 @@ minilibx:
 	make -C ./minilibx/
 
 $(%.o): $(%.c)
-	$(CC) -o $@ -c $^ -O3
+	$(CC) -o $@ -c $^
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft -O3
+	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft
 
 clean:
 	rm -f $(NAME)
