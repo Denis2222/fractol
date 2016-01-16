@@ -6,11 +6,37 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 14:30:44 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 17:45:59 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 17:35:23 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "fractol.h"
+
+void	draw_info(t_env *e)
+{
+	mlx_string_put(e->mlx, e->win, 10, 10, 0xFFFFFF, "it:");
+	mlx_string_put(e->mlx, e->win, 60, 10, 0xFFFFFF, ft_itoa(e->cam->maxit));
+	mlx_string_put(e->mlx, e->win, 10, 40, 0xFFFFFF, "zoom:");
+	mlx_string_put(e->mlx, e->win, 80, 40, 0xFFFFFF, ft_itoa(e->cam->z * 10));
+}
+
+void	draw_fractal(t_env *e)
+{
+	int	x;
+	int	y;
+
+	y = 0;
+	while (y < HEIGHT)
+	{
+		x = 0;
+		while (x < WIDTH)
+		{
+			switch_fractal(e, x, y);
+			x++;
+		}
+		y++;
+	}
+}
 
 void	draw_dot(t_env *e, int x, int y, int color)
 {

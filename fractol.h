@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   fractol.h                                              :+:      :+:    :+:   */
+/*   fractol.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/01/08 13:34:12 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/14 22:48:09 by dmoureu-         ###   ########.fr       */
+/*   Created: 2016/01/16 16:51:13 by dmoureu-          #+#    #+#             */
+/*   Updated: 2016/01/16 17:34:58 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,21 +43,24 @@
 # define KEY_S 1
 # define KEY_D 2
 # define KEY_F 3
+# define KEY_L 37
 
 # define M_PI5 M_PI / 5
 
 typedef struct	s_cam
 {
 	double		z;
-	double		moveX;
-	double		moveY;
-	double		mouseX;
-	double		mouseY;
-	double		varX;
-	double		varY;
-	int			maxIt;
+	double		movex;
+	double		movey;
+	double		mousex;
+	double		mousey;
+	double		varx;
+	double		vary;
+	int			maxit;
 	int			anim;
 }				t_cam;
+
+t_cam			*cam(void);
 
 typedef struct	s_env
 {
@@ -79,6 +82,10 @@ typedef struct	s_dot
 	int			y;
 }				t_dot;
 
+void			setdot(t_dot *dot, int x, int y);
+void			draw_dot(t_env *e, int x, int y, int color);
+void			draw_line(t_env *e, t_dot *p0, t_dot *p1, int color);
+
 typedef struct	s_complex
 {
 	double		r;
@@ -89,30 +96,30 @@ t_complex		initcomplex(void);
 t_complex		addcomplex(t_complex d1, t_complex d2);
 t_complex		souscomplex(t_complex d1, t_complex d2);
 t_complex		multcomplex(t_complex d1, t_complex d2);
+t_complex		offsetcomplex(t_env *e, int x, int y);
 
 void			setup(int n);
 
 int				mouse_hook(int button, int x, int y, t_env *e);
 int				expose_hook(t_env *e);
 int				key_hook(int keycode, t_env *e);
-
 int				keyto(t_env *e, int keycode);
 int				mouseto(t_env *e, int button, int x, int y);
+int				mouse_motion(int x, int y, t_env *e);
 
-void			draw_dot(t_env *e, int x, int y, int color);
-void			draw_line(t_env *e, t_dot *p0, t_dot *p1, int color);
+void			draw_img(t_env *e);
 void			draw_fractal(t_env *e);
-void			draw_pentagon(t_env *e, t_complex start, t_complex angle, int deep);
+void			switch_fractal(t_env *e, int x, int y);
 void			print_fractal_fdf(t_env *e);
+void			draw_info(t_env *e);
 
 int				get_iteration_mandelbrot(t_env *e, int x, int y);
 int				get_iteration_julia(t_env *e, int x, int y);
+int				get_iteration_custom(t_env *e, int x, int y);
+int				get_iteration_custom2(t_env *e, int x, int y);
+int				get_iteration_custom3(t_env *e, int x, int y);
 
-t_cam			*cam(void);
-void			setdot(t_dot *dot, int x, int y);
-
-//color
-int	rgb_to_int(int r, int g, int b);
-int	hsv_to_rgb(unsigned int h, unsigned int s, unsigned int v);
+int				rgb_to_int(int r, int g, int b);
+int				hsv_to_rgb(unsigned int h, unsigned int s, unsigned int v);
 
 #endif

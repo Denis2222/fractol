@@ -1,14 +1,15 @@
 .PHONY: libft minilibx
 
-SRCS = display.c \
-	   draw.c \
+SRCS = draw.c \
 	   setup.c \
+	   hook.c \
 	   key.c \
 	   color.c \
 	   t_cam.c \
 	   t_dot.c \
 	   t_complex.c \
 	   print.c \
+	   fractal_iterations.c \
 	   main.c
 
 NAME = fractol
