@@ -63,14 +63,18 @@ int	mouseto(t_env *e, int button, int x, int y)
 		e->cam->varX = e->cam->mouseX;
 		e->cam->varY = e->cam->mouseY;
 	}
-	if (button == 6)
+	if (button == 6 || button == 5)
+	{
+		e->cam->moveX+=(e->cam->mouseX * (1 / e->cam->z)) * 0.5;
+		e->cam->moveY+=(e->cam->mouseY * (1 / e->cam->z));
 		e->cam->z*=1.1;
-	if (button == 7)
+	}
+	if (button == 7 || button == 4)
 		e->cam->z*=0.9;
 	if (button == 1)
 	{
-		e->cam->moveX+=e->cam->mouseX * (1 / e->cam->z);
-		e->cam->moveY+=e->cam->mouseY * (1 / e->cam->z);
+		e->cam->moveX+=e->cam->mouseX * (2 / e->cam->z);
+		e->cam->moveY+=e->cam->mouseY * (2 / e->cam->z);
 	}
 	return (0);
 }

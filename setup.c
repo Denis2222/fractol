@@ -41,7 +41,7 @@ void	draw_info(t_env *e)
 	
 	mlx_string_put(e->mlx, e->win, 10, 25, 0xFFFFFF, "offset:");
 	mlx_string_put(e->mlx, e->win, 80, 25, 0xFFFFFF, ft_itoa(e->cam->moveX*10));
-	mlx_string_put(e->mlx, e->win, 110, 25, 0xFFFFFF, ft_itoa(e->cam->moveX*10));
+	mlx_string_put(e->mlx, e->win, 110, 25, 0xFFFFFF, ft_itoa(e->cam->moveY*10));
 	
 	mlx_string_put(e->mlx, e->win, 10, 40, 0xFFFFFF, "zoom:");
 	mlx_string_put(e->mlx, e->win, 80, 40, 0xFFFFFF, ft_itoa(e->cam->z*10));

@@ -31,13 +31,16 @@ int		get_iteration_mandelbrot(t_env *e, int x, int y)
 
 	p = offsetcomplex(e, x, y);
 	new = initcomplex();
+	new.r+= e->cam->varX;
+	new.i+= e->cam->varY;
 	old = initcomplex();
 	i = 0;
 	while (i < e->cam->maxIt && ((new.r * new.r + new.i * new.i) <= 4))
 	{
-		old = addcomplex(new, initcomplex());
-		new = multcomplex(old, old);
-		new = addcomplex(new, p);
+		old.r = new.r;
+		old.i = new.i;
+		new.r = old.r * old.r - old.i * old.i + p.r;
+		new.i = 2 * old.r * old.i + p.i;
 		i++;
 	}
 	return (i);
@@ -57,9 +60,10 @@ int		get_iteration_julia(t_env *e, int x, int y)
 	i = 0;
 	while (i < e->cam->maxIt && (new.r * new.r + new.i * new.i) <= 4)
 	{
-		old = addcomplex(new, initcomplex());
-		new = multcomplex(old, old);
-		new = addcomplex(new, c);
+		old.r = new.r;
+		old.i = new.i;
+		new.r = old.r * old.r - old.i * old.i + c.r;
+		new.i = 2 * old.r * old.i + c.i;
 		i++;
 	}
 	return (i);
@@ -120,8 +124,8 @@ int		get_iteration_custom3(t_env *e, int x, int y)
 	t_complex	c;
 	int			i;
 
-	c.r = -0.7;
-	c.i = 0.27015;
+	c.r = -0.7 + e->cam->varX;
+	c.i = 0.27015 + e->cam->varY;
 	new = offsetcomplex(e, x, y);
 	old = initcomplex();
 	i = 0;
@@ -129,8 +133,8 @@ int		get_iteration_custom3(t_env *e, int x, int y)
 	{
 		old = addcomplex(new, initcomplex());
 		new = multcomplex(old, old);
+		new = multcomplex(new, old);
 		new = addcomplex(new, c);
-		new.r = cos(new.r);
 		i++;
 	}
 	return (i);
