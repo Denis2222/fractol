@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 17:56:28 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 19:49:43 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 20:40:25 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,12 +74,12 @@ void	draw_pentagon(t_env *e)
 {
 	t_pentagon	p;
 
-	if (e->cam->maxit > 7)
-		e->cam->maxit = 1;
+	if (e->cam->maxit > 8)
+		e->cam->maxit = 3;
 	p = newpenta(
-		e->cam->movex * 50 + 50,
-		e->cam->movey * 50 + 40,
+		150 - e->cam->movex * 100 * e->cam->z,
+		150 - e->cam->movey * 100 * e->cam->z,
 		e->cam->z * 6,
-		e->cam->mousex);
+		e->cam->varx);
 	draw_pentagon_func(e, p, e->cam->maxit);
 }

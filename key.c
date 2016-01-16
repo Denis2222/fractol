@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:22:36 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 17:50:15 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 21:22:04 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ int	keyto_iter(t_env *e, int keycode)
 {
 	if (keycode == KEY_PADUP || keycode == KEY_D)
 		e->cam->maxit++;
-	if ((keycode == KEY_PADDOWN || keycode == KEY_A) && e->cam->maxit > 2)
+	if ((keycode == KEY_PADDOWN || keycode == KEY_A) && e->cam->maxit > 1)
 		e->cam->maxit--;
 	return (0);
 }
@@ -59,6 +59,12 @@ int	keyto(t_env *e, int keycode)
 	}
 	if (keycode == KEY_L)
 		print_fractal_fdf(e);
+
+	if (keycode == KEY_LBRACKET && e->fractale > 1)
+		e->fractale -= 1;
+	if (keycode == KEY_RBRACKET && e->fractale < 8)
+		e->fractale += 1;
+	ft_putnbr(keycode);
 	return (0);
 }
 
@@ -74,15 +80,19 @@ int	mouseto(t_env *e, int button, int x, int y)
 	if (button == 6 || button == 5)
 	{
 		e->cam->movex += (e->cam->mousex * (1 / e->cam->z)) * 0.5;
-		e->cam->movey += (e->cam->mousey * (1 / e->cam->z));
+		e->cam->movey += (e->cam->mousey * (1 / e->cam->z)) * 0.5;
 		e->cam->z *= 1.1;
 	}
 	if (button == 7 || button == 4)
+	{
+		e->cam->movex += (e->cam->mousex * (1 / e->cam->z)) * 0.5;
+		e->cam->movey += (e->cam->mousey * (1 / e->cam->z)) * 0.5;
 		e->cam->z *= 0.9;
+	}
 	if (button == 1)
 	{
-		e->cam->movex += e->cam->mousex * (2 / e->cam->z);
-		e->cam->movey += e->cam->mousey * (2 / e->cam->z);
+		e->cam->movex += e->cam->mousex * (1 / e->cam->z) * 0.5;
+		e->cam->movey += e->cam->mousey * (1 / e->cam->z) * 0.5;
 	}
 	return (0);
 }

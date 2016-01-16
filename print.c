@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/14 12:57:38 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 19:44:36 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 21:33:20 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	print_fractal_fdf(t_env *e)
 	int	y;
 	int	i;
 
-	e->fd = open("./fractol.fdf", O_WRONLY | O_TRUNC);
+	e->fd = open("./fractol.fdf", O_CREAT | O_WRONLY | O_TRUNC);
 	y = 0;
 	while (y < HEIGHT)
 	{

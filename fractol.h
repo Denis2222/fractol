@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 16:51:13 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 19:30:20 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 21:19:43 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,9 @@
 # define KEY_D 2
 # define KEY_F 3
 # define KEY_L 37
+
+# define KEY_LBRACKET 33
+# define KEY_RBRACKET 30
 
 # define M_PI5 M_PI / 5
 
@@ -134,6 +137,8 @@ int				get_iteration_mandelbrot2(t_env *e, int x, int y);
 int				get_iteration_mandelbrot3(t_env *e, int x, int y);
 int				get_iteration_julia(t_env *e, int x, int y);
 int				get_iteration_julia2(t_env *e, int x, int y);
+int				get_iteration_julia3(t_env *e, int x, int y);
+int				get_iteration_julia4(t_env *e, int x, int y);
 
 int				rgb_to_int(int r, int g, int b);
 int				hsv_to_rgb(unsigned int h, unsigned int s, unsigned int v);
