@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 16:51:13 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 21:51:55 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 22:41:40 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@ typedef struct	s_cam
 	double		vary;
 	int			maxit;
 	int			anim;
+	int			color;
 }				t_cam;
 
 t_cam			*cam(void);
