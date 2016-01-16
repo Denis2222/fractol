@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 17:36:07 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 18:22:07 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,10 @@ void	draw_img(t_env *e)
 	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 	e->imgpx = mlx_get_data_addr(
 	e->img, &(e->bpp), &(e->size_line), &(e->endian));
-	draw_fractal(e);
+	if (e->fractale == 6)
+		draw_pentagon(e);
+	else
+		draw_fractal(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
 	draw_info(e);
 	mlx_destroy_image(e->mlx, e->img);

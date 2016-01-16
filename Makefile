@@ -5,11 +5,14 @@ SRCS = draw.c \
 	   hook.c \
 	   key.c \
 	   color.c \
+	   print.c \
 	   t_cam.c \
 	   t_dot.c \
 	   t_complex.c \
-	   print.c \
-	   fractal_iterations.c \
+	   t_pentagon.c \
+	   fractal_mandelbrot.c \
+	   fractal_julia.c \
+	   fractal_pentagon.c \
 	   main.c
 
 NAME = fractol

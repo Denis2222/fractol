@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:22:36 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 17:33:40 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 17:50:15 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,13 +59,11 @@ int	keyto(t_env *e, int keycode)
 	}
 	if (keycode == KEY_L)
 		print_fractal_fdf(e);
-	ft_putnbr(keycode);
 	return (0);
 }
 
 int	mouseto(t_env *e, int button, int x, int y)
 {
-	ft_putnbr(button);
 	e->cam->mousex = ((double)x / WIDTH) - 0.5;
 	e->cam->mousey = ((double)y / HEIGHT) - 0.5;
 	if (e->cam->anim)
