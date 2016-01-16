@@ -53,6 +53,8 @@ typedef struct	s_cam
 	double		moveY;
 	double		mouseX;
 	double		mouseY;
+	double		varX;
+	double		varY;
 	int			maxIt;
 	int			anim;
 }				t_cam;
@@ -77,13 +79,16 @@ typedef struct	s_dot
 	int			y;
 }				t_dot;
 
-typedef struct	s_double2
+typedef struct	s_complex
 {
 	double		r;
 	double		i;
-}				t_double2;
+}				t_complex;
 
-void			double2(t_double2 *dbl);
+t_complex		initcomplex(void);
+t_complex		addcomplex(t_complex d1, t_complex d2);
+t_complex		souscomplex(t_complex d1, t_complex d2);
+t_complex		multcomplex(t_complex d1, t_complex d2);
 
 void			setup(int n);
 
@@ -97,7 +102,7 @@ int				mouseto(t_env *e, int button, int x, int y);
 void			draw_dot(t_env *e, int x, int y, int color);
 void			draw_line(t_env *e, t_dot *p0, t_dot *p1, int color);
 void			draw_fractal(t_env *e);
-void			draw_pentagon(t_env *e, t_double2 start, t_double2 angle, int deep);
+void			draw_pentagon(t_env *e, t_complex start, t_complex angle, int deep);
 void			print_fractal_fdf(t_env *e);
 
 int				get_iteration_mandelbrot(t_env *e, int x, int y);

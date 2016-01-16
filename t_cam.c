@@ -20,9 +20,11 @@ t_cam *cam(void)
 	camera->z = 1;
 	camera->moveX = 0;
 	camera->moveY = 0;
-	camera->maxIt = 6;
+	camera->maxIt = 30;
 	camera->mouseX = 0;
 	camera->mouseY = 0;
+	camera->varX = 0;
+	camera->varY = 0;
 	camera->anim = 0;
 	return (camera);
 }

@@ -7,7 +7,7 @@ SRCS = display.c \
 	   color.c \
 	   t_cam.c \
 	   t_dot.c \
-	   t_double2.c \
+	   t_complex.c \
 	   print.c \
 	   main.c
 
@@ -30,7 +30,7 @@ $(%.o): $(%.c)
 	$(CC) -o $@ -c $^
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft -O3
+	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft
 
 clean:
 	rm -f $(NAME)

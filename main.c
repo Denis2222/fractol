@@ -33,9 +33,9 @@ int		main(int ac, char **av)
 
 	if (ac != 2)
 		help();
-	//setbuf(stdout, NULL);
+	setbuf(stdout, NULL);
 	f = ft_atoi(av[1]);
-	if (f > 0 && f < 5)
+	if (f > 0 && f < 6)
 		setup(f);
 	else
 		invalid(f);

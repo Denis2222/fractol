@@ -34,35 +34,27 @@ void	setup(int f)
 	close(e.fd);
 }
 
-void	draw_durer(t_env *e)
+void	draw_info(t_env *e)
 {
-	t_double2	start;
-	t_double2	angle;
-
-	start.r = e->cam->moveX * e->cam->z + 50;
-	start.i = e->cam->moveY * e->cam->z + 40;
-	angle.r = e->cam->z * 6;
-	angle.i = e->cam->mouseX;
-	//draw_pentagon(e, start, angle, e->cam->maxIt);
+	mlx_string_put(e->mlx, e->win, 10, 10, 0xFFFFFF, "it:");
+	mlx_string_put(e->mlx, e->win, 60, 10, 0xFFFFFF, ft_itoa(e->cam->maxIt));
+	
+	mlx_string_put(e->mlx, e->win, 10, 25, 0xFFFFFF, "offset:");
+	mlx_string_put(e->mlx, e->win, 80, 25, 0xFFFFFF, ft_itoa(e->cam->moveX*10));
+	mlx_string_put(e->mlx, e->win, 110, 25, 0xFFFFFF, ft_itoa(e->cam->moveX*10));
+	
+	mlx_string_put(e->mlx, e->win, 10, 40, 0xFFFFFF, "zoom:");
+	mlx_string_put(e->mlx, e->win, 80, 40, 0xFFFFFF, ft_itoa(e->cam->z*10));
 }
+
 void	draw_img(t_env *e)
 {
-/*	printf("zoom: %f \nmoveX:%f moveY:%f \nmouse X:%f mouseY:%f \n",
-		e->cam->zoom, 
-		e->cam->moveX, 
-		e->cam->moveY, 
-		e->cam->mouseX, 
-		e->cam->mouseY);
-*/
 	e->img = mlx_new_image(e->mlx, WIDTH, HEIGHT);
 	e->imgpx = mlx_get_data_addr(
 	e->img, &(e->bpp), &(e->size_line), &(e->endian));
-	
-	if (e->fractale == 1 || e->fractale == 2 || e->fractale == 4)
-		draw_fractal(e);
-	if (e->fractale == 3)
-		draw_durer(e);
+	draw_fractal(e);
 	mlx_put_image_to_window(e->mlx, e->win, e->img, 0, 0);
+	draw_info(e);
 	mlx_destroy_image(e->mlx, e->img);
 }
 
