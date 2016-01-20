@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 17:07:32 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 22:30:54 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/20 16:33:40 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,8 @@ void	help(void)
 	ft_putendl("3 Mandelbrot (Z^3 + C)");
 	ft_putendl("4 Mandelbrot (Z^2 + C^3)");
 	ft_putendl("5 Julia (Z^3 + C^3)");
-	ft_putendl("6 Custom");
-	ft_putendl("7 Custom");
+	ft_putendl("6 Julia Custom (cos)");
+	ft_putendl("7 Julia (Z^5 + C)");
 	ft_putendl("8 Pentagon de durer");
 	ft_putendl("=====================");
 	ft_putendl("Move : Arrow");
