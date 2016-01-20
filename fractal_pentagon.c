@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/16 17:56:28 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 22:12:35 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/16 23:08:55 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,8 +56,8 @@ void	draw_pentagon_func(t_env *e, t_pentagon p, int deep)
 		j = 0;
 		while (j < 4)
 		{
-			draw_line(e,
-				dotpro(p, p2, ang3, j), dotpro(p, p2, ang3, j + 1), 255);
+			draw_line(e, dotpro(p, p2, ang3, j), dotpro(p, p2, ang3, j + 1),
+				hsv_to_rgb((255 + e->cam->color) % 256, 255, 255));
 			j++;
 		}
 		if (deep > 0)

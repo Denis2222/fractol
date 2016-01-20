@@ -6,7 +6,7 @@
 /*   By: dmoureu- <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/01/11 18:11:24 by dmoureu-          #+#    #+#             */
-/*   Updated: 2016/01/16 21:21:16 by dmoureu-         ###   ########.fr       */
+/*   Updated: 2016/01/18 21:16:12 by dmoureu-         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	setup(int f)
 	t_env	e;
 
 	e.fractale = f;
-	e.fd = open("./fractol.fdf", O_WRONLY | O_TRUNC);
 	e.mlx = mlx_init();
 	e.win = mlx_new_window(e.mlx, WIDTH, HEIGHT, "Fractol");
 	e.bpp = 0;
@@ -29,7 +28,6 @@ void	setup(int f)
 	mlx_hook(e.win, 6, 1, mouse_motion, &e);
 	mlx_expose_hook(e.win, expose_hook, &e);
 	mlx_loop(e.mlx);
-	close(e.fd);
 }
 
 void	draw_img(t_env *e)
