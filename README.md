@@ -1,5 +1,8 @@
 # fractol
 Fractal Explorer
+![Exemple](https://raw.githubusercontent.com/Denis2222/fractol/master/gfx/screen.png)
+
+---
 
 Compile:
 ```
@@ -42,7 +45,3 @@ Mouse Click: Center to click
 Enable/Disable move: {F} + mouse move
 
 Export FdF: {L}
-
----
-
-![Exemple](https://raw.githubusercontent.com/Denis2222/fractol/master/gfx/screen.png)
