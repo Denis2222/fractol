@@ -16,7 +16,7 @@ SRCS = draw.c \
 	   main.c
 
 NAME = fractol
-GCC_FLAG = -Wall -Werror -Wextra
+GCC_FLAG = -Wall -Werror -Wextra -Lminilibx/ -lX11 -lXext -lmlx -lGLU -lGL -Llibft -lft -lm -lXxf86vm -lX11 -lXrandr -lXi
 CC = gcc $(GCC_FLAG)
 
 OBJS = $(SRCS:.c=.o)
@@ -33,7 +33,7 @@ $(%.o): $(%.c)
 	$(CC) -o $@ -c $^
 
 $(NAME): $(OBJS)
-	$(CC) -o $@ $^ -Lminilibx/ -lmlx -framework OPENGL -framework Appkit -Llibft -lft
+	$(CC) -o $@ $^ $(GCC_FLAG)
 
 clean:
 	rm -f $(OBJS)
